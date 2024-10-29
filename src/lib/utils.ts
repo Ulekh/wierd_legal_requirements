@@ -10,17 +10,16 @@ function hasSamePropertiesValues(obj1: TubeSample, obj2: TubeSample) {
   return firstObjectValues.find((prop) => secondObjectValues.includes(prop));
 }
 
-export function assingSampleToRack(sampleData: TubeSample[]) {
+export function assignSampleToRack(sampleData: TubeSample[]) {
   if (!sampleData.length) {
-    return undefined;
+    return [];
   }
-
-  const [first] = sampleData;
-  let assignedSamples = [{ ...first, rack: 1 }];
 
   if (sampleData.length === 1) {
-    return assignedSamples;
+    sampleData[0].rack = 1;
+    return sampleData;
   }
+
   for (let idx = 0; idx < sampleData.length; ++idx) {
     if (!sampleData[0].rack) {
       sampleData[0].rack = 0;

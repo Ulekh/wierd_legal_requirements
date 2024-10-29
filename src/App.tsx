@@ -1,20 +1,17 @@
 import { useState } from "react";
 import "./App.css";
 import SamplesPreview from "./components/SamplesPreview";
+import { assingSampleToRack } from "./lib/utils";
+import { TubeSample } from "./lib/types";
 
 function App() {
-  const [samples, setSamples] = useState([]);
+  const [samples, setSamples] = useState<TubeSample[]>([]);
 
-  // const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   console.log(e);
-  //   setSamples(e.target.value);
-  // };
   const date = new Date();
 
   const handleFormSumbit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    console.log(formData);
+    const formData = new FormData(event.currentTarget);
     const formValues = {
       name: formData.get("name"),
       age: formData.get("age"),
@@ -23,12 +20,19 @@ function App() {
       visitonDefects: formData.get("visitonDefects"),
     };
 
-    setSamples((prev) => {
-      return [...prev, { ...formValues, id: date.getTime(), rack: undefined }];
-    });
-    event.target.reset();
+    setSamples([
+      ...samples,
+      { ...formValues, id: date.getTime(), rack: undefined },
+    ]);
+    event.currentTarget.reset();
 
     // console.log(formValues);
+  };
+
+  const handleSubmitSamples = () => {
+    const result = assingSampleToRack(samples);
+    console.log(result);
+    setSamples(result);
   };
 
   return (
@@ -60,7 +64,7 @@ function App() {
           type="text"
           name="district"
           id="district"
-          placeholder="Construction Site"
+          placeholder="District"
           required
         />
         <label htmlFor="district"></label>
@@ -69,7 +73,7 @@ function App() {
           type="text"
           name="visitonDefects"
           id="visitonDefects"
-          placeholder="South"
+          placeholder="Myopia"
           required
         />
         <label htmlFor="visitonDefects"></label>
@@ -77,6 +81,9 @@ function App() {
           add
         </button>
       </form>
+      <button disabled={!samples.length} onClick={handleSubmitSamples}>
+        submit samples
+      </button>
 
       {/* <pre>{samples}</pre> */}
     </>

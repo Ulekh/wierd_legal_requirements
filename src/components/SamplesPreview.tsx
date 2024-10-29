@@ -10,9 +10,9 @@ export default function SamplesPreview({ samples }: TSnaplePreviewProps) {
       {samples.map((sample) => {
         return (
           <>
-            <li>
+            <li key={sample.id}>
               {sample.name} {sample.age} {sample.workPlace} {sample.district}{" "}
-              {sample.visitonDefects}
+              {sample.visitonDefects} <strong>{sample.rack}</strong>
             </li>
           </>
         );
