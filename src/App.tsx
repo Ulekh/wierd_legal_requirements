@@ -1,35 +1,86 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import SamplesPreview from "./components/SamplesPreview";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [samples, setSamples] = useState([]);
+
+  // const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   console.log(e);
+  //   setSamples(e.target.value);
+  // };
+  const date = new Date();
+
+  const handleFormSumbit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    console.log(formData);
+    const formValues = {
+      name: formData.get("name"),
+      age: formData.get("age"),
+      workPlace: formData.get("workPlace"),
+      district: formData.get("district"),
+      visitonDefects: formData.get("visitonDefects"),
+    };
+
+    setSamples((prev) => {
+      return [...prev, { ...formValues, id: date.getTime(), rack: undefined }];
+    });
+    event.target.reset();
+
+    // console.log(formValues);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <SamplesPreview samples={samples} />
+
+      <form onSubmit={handleFormSumbit}>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="John Doe"
+          required
+          minLength={2}
+        />
+        <label htmlFor="name"></label>
+
+        <input type="number" name="age" id="age" placeholder="30..." required />
+        <label htmlFor="age"></label>
+        <input
+          type="text"
+          name="workPlace"
+          id="workPlace"
+          placeholder="McDonalds..."
+          required
+        />
+        <label htmlFor="workPlace"></label>
+        <input
+          type="text"
+          name="district"
+          id="district"
+          placeholder="Construction Site"
+          required
+        />
+        <label htmlFor="district"></label>
+
+        <input
+          type="text"
+          name="visitonDefects"
+          id="visitonDefects"
+          placeholder="South"
+          required
+        />
+        <label htmlFor="visitonDefects"></label>
+        <button type="submit" onSubmit={handleFormSumbit}>
+          add
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      </form>
+
+      {/* <pre>{samples}</pre> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
