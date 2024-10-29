@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import SamplesPreview from "./components/SamplesPreview";
-import { assingSampleToRack } from "./lib/utils";
+import { assignSampleToRack } from "./lib/utils";
 import { TubeSample } from "./lib/types";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
   };
 
   const handleSubmitSamples = () => {
-    const result = assingSampleToRack(samples);
+    const result = assignSampleToRack(samples);
     console.log(result);
     setSamples(result);
   };

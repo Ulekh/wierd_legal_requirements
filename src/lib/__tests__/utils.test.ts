@@ -1,5 +1,5 @@
 import type { TubeSample } from "../types";
-import { assingSampleToRack } from "../utils";
+import { assignSampleToRack } from "../utils";
 
 const samples: TubeSample[] = [
   {
@@ -33,7 +33,7 @@ const samples: TubeSample[] = [
 
 describe("Assign samples to racks", () => {
   test("should assign samples to different racks", () => {
-    expect(assingSampleToRack(samples)).toEqual([
+    expect(assignSampleToRack(samples)).toEqual([
       {
         name: "Alice Johnson",
         id: 1,
@@ -66,7 +66,7 @@ describe("Assign samples to racks", () => {
 
   test("should assine one sample to rack", () => {
     expect(
-      assingSampleToRack([
+      assignSampleToRack([
         {
           name: "Cathy Lee",
           id: 3,
