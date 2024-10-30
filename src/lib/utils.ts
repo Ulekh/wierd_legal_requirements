@@ -28,7 +28,6 @@ export function assignSampleToRack(
 
   for (let idx = 0; idx < sampleData.length; ++idx) {
     for (let j = idx + 1; j < sampleData.length; ++j) {
-      console.log("adfasdfs");
       if (!sampleData[j].rack) {
         sampleData[j].rack = 0;
       }

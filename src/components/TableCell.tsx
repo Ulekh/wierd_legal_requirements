@@ -10,7 +10,7 @@ export default function TableCell({
     <span
       className={`${
         className || ""
-      } flex-[1_1_100px] px-2 content-center min-h-6`}
+      } flex-[1_1_100px] px-2 content-center min-h-6 capitalize`}
     >
       {children}
     </span>

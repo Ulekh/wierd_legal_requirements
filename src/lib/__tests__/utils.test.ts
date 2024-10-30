@@ -58,32 +58,6 @@ describe("findSameEntries", () => {
     ).toEqual(["visionDefects", "Astigmatism"]);
   });
 
-  // not ready
-  // test("should find interference in two objects (case insensivite)", () => {
-  //   expect(
-  //     findSameEntries(
-  //       {
-  //         name: "Bob Smith",
-  //         id: 2,
-  //         age: 42,
-  //         workPlace: "School",
-  //         district: "North",
-  //         visionDefects: "astigmatism",
-  //         rack: undefined,
-  //       },
-  //       {
-  //         name: "Cathy Lee",
-  //         id: 3,
-  //         age: 28,
-  //         workPlace: "Tech Company",
-  //         district: "East",
-  //         visionDefects: "Astigmatism",
-  //         rack: undefined,
-  //       }
-  //     )
-  //   ).toEqual(["visionDefects", "Astigmatism"]);
-  // });
-
   test("should not find interference in two different objects", () => {
     expect(
       findSameEntries(

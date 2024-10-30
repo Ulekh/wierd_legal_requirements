@@ -11,11 +11,11 @@ function App() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formValues = {
-      name: formData.get("name") as string,
-      age: formData.get("age") as unknown as number,
-      workPlace: formData.get("workPlace") as string,
-      district: formData.get("district") as string,
-      visionDefects: formData.get("visitonDefects") as string,
+      name: (formData.get("name") as string).toLowerCase(),
+      age: Number(formData.get("age") as string),
+      workPlace: (formData.get("workPlace") as string).toLowerCase(),
+      district: (formData.get("district") as string).toLowerCase(),
+      visionDefects: (formData.get("visitonDefects") as string).toLowerCase(),
     };
     setSamples([
       ...samples,
