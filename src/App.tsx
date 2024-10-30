@@ -1,16 +1,11 @@
-import { useState, useMemo, useCallback } from "react";
 import SamplesPreview from "./components/SamplesPreview";
 import { assignSampleToRack } from "./lib/utils";
-import { TubeSample } from "./lib/types";
 
-import { sampleData } from "./assets/data";
 import AddSampleForm from "./components/AddSampleForm";
+import { useSessionStorageData } from "./hooks/useSessionStorageData";
 
 function App() {
-  const [samples, setSamples] = useState<TubeSample[]>([]);
-
-  const date = new Date();
-  console.log("rerender");
+  const { samples, setSamples } = useSessionStorageData();
 
   const handleAddNewSample = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -24,15 +19,15 @@ function App() {
     };
     setSamples([
       ...samples,
-      { ...formValues, id: date.getTime(), rack: undefined },
+      { ...formValues, id: new Date().getTime(), rack: undefined },
     ]);
     event.currentTarget.reset();
   };
 
-  const handleSamplesAssign = useCallback(() => {
+  const handleSamplesAssign = () => {
     const result = assignSampleToRack(samples);
     setSamples([...result]);
-  }, [samples]);
+  };
 
   return (
     <section className="p-8 max-w-7xl my-0 mx-auto">

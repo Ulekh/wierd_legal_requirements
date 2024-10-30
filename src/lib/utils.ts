@@ -1,6 +1,5 @@
 import { TubeSample } from "./types";
-
-const CONSTRAINS = ["age", "workPlace", "district", "visionDefects"];
+import { CONSTRAINS } from "../constants";
 
 export function findSameEntries(obj1: TubeSample, obj2: TubeSample) {
   if (!obj1 || !obj2) return [];

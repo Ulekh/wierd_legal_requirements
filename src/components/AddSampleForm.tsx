@@ -30,7 +30,7 @@ export default function AddSampleForm({
           placeholder="30..."
           className="border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
           required
-          pattern="\d{1,5}"
+          pattern="/^(0|[1-9]\d*)?$/"
           min={0}
           max={120}
         />

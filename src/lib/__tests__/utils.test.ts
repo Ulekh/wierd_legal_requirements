@@ -58,6 +58,7 @@ describe("findSameEntries", () => {
     ).toEqual(["visionDefects", "Astigmatism"]);
   });
 
+  // not ready
   // test("should find interference in two objects (case insensivite)", () => {
   //   expect(
   //     findSameEntries(

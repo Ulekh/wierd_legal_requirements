@@ -30,12 +30,6 @@ function HeaderRow() {
   );
 }
 
-// function SamplesContent({ samples }: TubeSample[]) {
-//   return (
-
-//   )
-// }
-
 export default function SamplesPreview({
   samples,
   handleSamplesAssign,
