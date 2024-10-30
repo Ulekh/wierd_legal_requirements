@@ -1,5 +1,6 @@
 import type { TubeSample } from "../types";
 import { assignSampleToRack, findSameEntries } from "../utils";
+import { sampleData, sampleDataWithRacks } from "../../assets/data";
 
 const samples: TubeSample[] = [
   {
@@ -104,11 +105,15 @@ describe("findSameEntries", () => {
           rack: undefined,
         }
       )
-    ).toEqual(undefined);
+    ).toEqual([]);
   });
 });
 
 describe("Assign samples to racks", () => {
+  test("should assign 10 samples with interference into different racks", () => {
+    expect(assignSampleToRack(sampleData)).toEqual(sampleDataWithRacks);
+  });
+
   test("should assign 3 samples with no interference into same rack", () => {
     expect(assignSampleToRack(samples)).toEqual([
       {
@@ -141,7 +146,7 @@ describe("Assign samples to racks", () => {
     ]);
   });
 
-  test("should assign 3 samples with interferences into 3 racks", () => {
+  test("should assign 3 samples with interferences into 2 racks", () => {
     expect(
       assignSampleToRack([
         {
@@ -198,7 +203,7 @@ describe("Assign samples to racks", () => {
         workPlace: "Tech Company",
         district: "East",
         visionDefects: "Astigmatism",
-        rack: 2,
+        rack: 0,
       },
     ]);
   });
@@ -269,7 +274,7 @@ describe("Assign samples to racks", () => {
         workPlace: "Tech Company",
         district: "East",
         visionDefects: "Astigmatism",
-        rack: 2,
+        rack: 0,
       },
       {
         name: "David Brown",

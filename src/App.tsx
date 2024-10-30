@@ -1,111 +1,49 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import SamplesPreview from "./components/SamplesPreview";
 import { assignSampleToRack } from "./lib/utils";
 import { TubeSample } from "./lib/types";
+
+import { sampleData } from "./assets/data";
+import AddSampleForm from "./components/AddSampleForm";
 
 function App() {
   const [samples, setSamples] = useState<TubeSample[]>([]);
 
   const date = new Date();
+  console.log("rerender");
 
-  const handleFormSumbit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleAddNewSample = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formValues = {
-      name: formData.get("name"),
-      age: formData.get("age"),
-      workPlace: formData.get("workPlace"),
-      district: formData.get("district"),
-      visionDefects: formData.get("visitonDefects"),
+      name: formData.get("name") as string,
+      age: formData.get("age") as unknown as number,
+      workPlace: formData.get("workPlace") as string,
+      district: formData.get("district") as string,
+      visionDefects: formData.get("visitonDefects") as string,
     };
     setSamples([
       ...samples,
       { ...formValues, id: date.getTime(), rack: undefined },
     ]);
     event.currentTarget.reset();
-
-    // console.log(formValues);
   };
 
-  const handleSubmitSamples = () => {
+  const handleSamplesAssign = useCallback(() => {
     const result = assignSampleToRack(samples);
-    console.log(result);
     setSamples([...result]);
-  };
+  }, [samples]);
 
   return (
-    <section className="p-8">
-      {samples.length ? <SamplesPreview samples={samples} /> : null}
-
-      <form
-        onSubmit={handleFormSumbit}
-        className="flex flex-col mb-4 lg:flex-row"
-      >
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="John Doe"
-          required
-          minLength={2}
-          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
+    <section className="p-8 max-w-7xl my-0 mx-auto">
+      <h1 className="font-semibold text-2xl mb-5">Samples preview</h1>
+      <section className="mb-6">
+        <SamplesPreview
+          samples={samples}
+          handleSamplesAssign={handleSamplesAssign}
         />
-
-        <input
-          type="number"
-          name="age"
-          id="age"
-          placeholder="30..."
-          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
-          required
-          min={0}
-          max={120}
-        />
-
-        <input
-          type="text"
-          name="workPlace"
-          id="workPlace"
-          placeholder="McDonalds..."
-          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
-          required
-        />
-
-        <input
-          type="text"
-          name="district"
-          id="district"
-          placeholder="District"
-          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
-          required
-        />
-
-        <input
-          type="text"
-          name="visitonDefects"
-          id="visitonDefects"
-          placeholder="Myopia"
-          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
-          required
-        />
-
-        <button
-          type="submit"
-          onSubmit={handleFormSumbit}
-          className="bg-gray-400 rounded p-2 mt-4"
-        >
-          Add
-        </button>
-      </form>
-      <button
-        disabled={!samples.length}
-        onClick={handleSubmitSamples}
-        className="enabled:bg-blue-600 rounded p-2 hover:bg-blue-400 text-white transition w-full disabled:bg-gray-300 disabled:hover"
-      >
-        Submit samples
-      </button>
-
-      {/* <pre>{samples}</pre> */}
+      </section>
+      <AddSampleForm handleFormSubmit={handleAddNewSample} />
     </section>
   );
 }
