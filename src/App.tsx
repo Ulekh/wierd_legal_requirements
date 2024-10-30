@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import SamplesPreview from "./components/SamplesPreview";
 import { assignSampleToRack } from "./lib/utils";
 import { TubeSample } from "./lib/types";
@@ -17,9 +16,8 @@ function App() {
       age: formData.get("age"),
       workPlace: formData.get("workPlace"),
       district: formData.get("district"),
-      visitonDefects: formData.get("visitonDefects"),
+      visionDefects: formData.get("visitonDefects"),
     };
-
     setSamples([
       ...samples,
       { ...formValues, id: date.getTime(), rack: undefined },
@@ -32,14 +30,17 @@ function App() {
   const handleSubmitSamples = () => {
     const result = assignSampleToRack(samples);
     console.log(result);
-    setSamples(result);
+    setSamples([...result]);
   };
 
   return (
-    <>
-      <SamplesPreview samples={samples} />
+    <section className="p-8">
+      {samples.length ? <SamplesPreview samples={samples} /> : null}
 
-      <form onSubmit={handleFormSumbit}>
+      <form
+        onSubmit={handleFormSumbit}
+        className="flex flex-col mb-4 lg:flex-row"
+      >
         <input
           type="text"
           name="name"
@@ -47,46 +48,65 @@ function App() {
           placeholder="John Doe"
           required
           minLength={2}
+          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
         />
-        <label htmlFor="name"></label>
 
-        <input type="number" name="age" id="age" placeholder="30..." required />
-        <label htmlFor="age"></label>
+        <input
+          type="number"
+          name="age"
+          id="age"
+          placeholder="30..."
+          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
+          required
+          min={0}
+          max={120}
+        />
+
         <input
           type="text"
           name="workPlace"
           id="workPlace"
           placeholder="McDonalds..."
+          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
           required
         />
-        <label htmlFor="workPlace"></label>
+
         <input
           type="text"
           name="district"
           id="district"
           placeholder="District"
+          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
           required
         />
-        <label htmlFor="district"></label>
 
         <input
           type="text"
           name="visitonDefects"
           id="visitonDefects"
           placeholder="Myopia"
+          className=" border-2 border-blue-400/50 px-4 border-1 mb-1 rounded h-8 focus:outline-none focus:ring focus:border-blue-500"
           required
         />
-        <label htmlFor="visitonDefects"></label>
-        <button type="submit" onSubmit={handleFormSumbit}>
-          add
+
+        <button
+          type="submit"
+          onSubmit={handleFormSumbit}
+          className="bg-gray-400 rounded p-2 mt-4"
+        >
+          Add
         </button>
       </form>
-      <button disabled={!samples.length} onClick={handleSubmitSamples}>
-        submit samples
+      <button
+        disabled={!samples.length}
+        onClick={handleSubmitSamples}
+        className="enabled:bg-blue-600 rounded p-2 hover:bg-blue-400 text-white transition w-full disabled:bg-gray-300 disabled:hover"
+      >
+        Submit samples
       </button>
 
       {/* <pre>{samples}</pre> */}
-    </>
+    </section>
   );
 }
 

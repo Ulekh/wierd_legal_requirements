@@ -7,7 +7,7 @@ export const sampleData: TubeSample[] = [
     age: 34,
     workPlace: "Hospital",
     district: "Central",
-    visitonDefects: "Myopia",
+    visionDefects: "Myopia",
     rack: undefined,
   },
   {
@@ -16,7 +16,7 @@ export const sampleData: TubeSample[] = [
     age: 42,
     workPlace: "School",
     district: "North",
-    visitonDefects: "Hyperopia",
+    visionDefects: "Hyperopia",
     rack: undefined,
   },
   {
@@ -25,7 +25,7 @@ export const sampleData: TubeSample[] = [
     age: 28,
     workPlace: "Tech Company",
     district: "East",
-    visitonDefects: "Astigmatism",
+    visionDefects: "Astigmatism",
     rack: undefined,
   },
   {
@@ -34,7 +34,7 @@ export const sampleData: TubeSample[] = [
     age: 51,
     workPlace: "Bank",
     district: "South",
-    visitonDefects: "Presbyopia",
+    visionDefects: "Presbyopia",
     rack: undefined,
   },
   {
@@ -43,7 +43,7 @@ export const sampleData: TubeSample[] = [
     age: 37,
     workPlace: "Restaurant",
     district: "West",
-    visitonDefects: "Myopia",
+    visionDefects: "Myopia",
     rack: undefined,
   },
   {
@@ -52,7 +52,7 @@ export const sampleData: TubeSample[] = [
     age: 45,
     workPlace: "Library",
     district: "Central",
-    visitonDefects: "Glaucoma",
+    visionDefects: "Glaucoma",
     rack: undefined,
   },
   {
@@ -61,7 +61,7 @@ export const sampleData: TubeSample[] = [
     age: 30,
     workPlace: "Clinic",
     district: "North",
-    visitonDefects: "Astigmatism",
+    visionDefects: "Astigmatism",
     rack: undefined,
   },
   {
@@ -70,7 +70,7 @@ export const sampleData: TubeSample[] = [
     age: 39,
     workPlace: "Construction Site",
     district: "South",
-    visitonDefects: "Hyperopia",
+    visionDefects: "Hyperopia",
     rack: undefined,
   },
   {
@@ -79,7 +79,7 @@ export const sampleData: TubeSample[] = [
     age: 29,
     workPlace: "University",
     district: "East",
-    visitonDefects: "Myopia",
+    visionDefects: "Myopia",
     rack: undefined,
   },
   {
@@ -88,7 +88,7 @@ export const sampleData: TubeSample[] = [
     age: 56,
     workPlace: "Government Office",
     district: "West",
-    visitonDefects: "Cataracts",
+    visionDefects: "Cataracts",
     rack: undefined,
   },
 ];

@@ -4,6 +4,6 @@ export type TubeSample = {
   age: number;
   workPlace: string;
   district: string;
-  visitonDefects: string;
+  visionDefects: string;
   rack: undefined | number;
 };
