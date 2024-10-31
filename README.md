@@ -1,4 +1,4 @@
-# Project Title
+# Wierd legal requirements
 
 This is a frontend project created as a recruitment task, developed using Vite, Tailwind CSS for styling, and Vitest for unit testing.
 
